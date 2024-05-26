@@ -2,6 +2,7 @@ import { ReturnBook } from "./ReturnBook";
 import { useEffect, useState } from "react";
 import BookModel from "../../../models/BookModel";
 import { error } from "console";
+import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 
 export const Carousel = () => {
   const [books, setBooks] = useState<BookModel[]>([]);
@@ -48,11 +49,7 @@ export const Carousel = () => {
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="container m-5">
-        <p>Loading...</p>
-      </div>
-    );
+    return <SpinnerLoading />;
   }
 
   if (httpError) {
@@ -84,14 +81,14 @@ export const Carousel = () => {
           </div>
           <div className="carousel-item">
             <div className="row d-flex justify-content-center align-items-center">
-              {books.slice(3.6).map((book) => (
+              {books.slice(3, 6).map((book) => (
                 <ReturnBook book={book} key={book.id} />
               ))}
             </div>
           </div>
           <div className="carousel-item">
             <div className="row d-flex justify-content-center align-items-center">
-              {books.slice(6.9).map((book) => (
+              {books.slice(6, 9).map((book) => (
                 <ReturnBook book={book} key={book.id} />
               ))}
             </div>
